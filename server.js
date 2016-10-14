@@ -24,6 +24,11 @@ app.post('/', (req, res) => {
   })
 })
 
+app.get('/users', (req, res) => {
+  knex("User")
+  .then((users) => res.render("listOfUser", {users}))
+})
+
 app.listen(port, () => {
   console.log('Now listening on port', port)
 })
