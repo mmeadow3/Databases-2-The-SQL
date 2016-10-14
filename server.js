@@ -32,19 +32,18 @@ app.get('/users', (req, res) => {
 app.get('/users/:userid', (req, res) => {
   knex("User").where("id", req.params.userid)
   .then((user) => {
-    console.log(user);
     res.render("userpage", {user: user[0]})
   })
 })
 
-app.put('/users/:userid', (req, res) => {
+app.post('/users/:userid', (req, res) => {
+
   knex("User").where("id", req.params.userid)
-  .update(req.body)
-  .then((data)=> {
-    console.log(data)
-    res.sendStatus(200)
-  })
-  .catch(console.error)
+    .update(req.body)
+    .then((data)=> {
+      res.redirect('/users');
+    })
+    .catch(console.error);
 })
 
 app.listen(port, () => {
