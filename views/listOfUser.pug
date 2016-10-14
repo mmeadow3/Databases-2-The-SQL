@@ -4,4 +4,6 @@ html
     body
       ul
         each user in users
-          li #{user.email}
+          - const path = `/users/${user.id}`
+          li
+            a(href=path) #{user.email}
